@@ -1,36 +1,32 @@
-import React, { useRef, useState } from "react";
-// Import Swiper React components
+import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
+import "swiper/css/navigation";
+
+import { Pagination, Navigation, Autoplay } from "swiper/modules";
 
 import "./styles.css";
 
-// import required modules
-import { Pagination } from "swiper/modules";
 const Slider = () => {
   return (
-    <>
-      <Swiper
-        pagination={{
-          dynamicBullets: true,
-        }}
-        modules={[Pagination]}
-        className="mySwiper"
-      >
-        <SwiperSlide>Slide 1</SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide>
-      </Swiper>
-    </>
+    <Swiper
+      modules={[Pagination, Navigation, Autoplay]}
+      pagination={{ dynamicBullets: true }}
+      navigation
+      autoplay={{
+        delay: 3000,
+        disableOnInteraction: false,
+      }}
+      spaceBetween={20}
+      slidesPerView={1}
+      className="mySwiper"
+    >
+      {Array.from({ length: 9 }).map((_, index) => (
+        <SwiperSlide key={index}>Slide {index + 1}</SwiperSlide>
+      ))}
+    </Swiper>
   );
 };
 
