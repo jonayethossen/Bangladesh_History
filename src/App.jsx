@@ -1,7 +1,14 @@
 import React from "react";
+import Navbar from "./components/Navbar";
+import Slider from "./components/Slider";
 
 const App = () => {
-  return <div className="bg-red-400">App</div>;
+  return (
+    <div>
+      <Navbar />
+      <Slider />
+    </div>
+  );
 };
 
 export default App;
