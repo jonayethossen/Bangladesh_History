@@ -1,4 +1,4 @@
-# 🇧🇩 Bangladesh Liberation War Digital Archive
+#  Bangladesh Liberation War Digital Archive
 
 A comprehensive digital repository dedicated to preserving the history, heroic testimonies, and significant documents of the 1971 Bangladesh Liberation War.
 
