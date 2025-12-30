@@ -43,7 +43,7 @@ const Slider = () => {
   ];
 
   return (
-    <div className="w-full h-[500px] md:h-[600px] overflow-hidden">
+    <div className="w-full h-125 md:h-150 overflow-hidden">
       <Swiper
         modules={[Pagination, Navigation, Autoplay]}
         pagination={{ clickable: true, dynamicBullets: true }}
