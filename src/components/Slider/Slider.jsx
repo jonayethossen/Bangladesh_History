@@ -63,7 +63,7 @@ const Slider = () => {
               className="relative w-full h-full bg-cover bg-center flex items-center justify-center"
               style={{ backgroundImage: `url(${slide.image})` }}
             >
-              {/* Overlay: ছবি কালো করার জন্য যাতে লেখা ফুটে ওঠে */}
+              {/* Overlay */}
               <div className="absolute inset-0 bg-black/50"></div>
 
               {/* Content */}
