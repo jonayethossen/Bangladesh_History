@@ -1,11 +1,10 @@
 import React from "react";
-// আপনার assets ফোল্ডার থেকে ছবিগুলো ইমপোর্ট করুন
+
 import GalleryImage1 from "../assets/123.jpg";
 import GalleryImage2 from "../assets/Mrchowdhury.jpg";
 import GalleryImage3 from "../assets/fozlo.jpg";
 
 const GallerySection = () => {
-  // ছবির ডাটা অ্যারে
   const photos = [
     {
       id: 1,
@@ -73,7 +72,7 @@ const GallerySection = () => {
                 className="w-full h-72 object-cover transform transition-transform duration-500 group-hover:scale-110"
               />
 
-              {/* Hover Overlay - যখন মাউস ছবির ওপর নিবেন */}
+              {/* Hover Overlay */}
               <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center text-white p-4">
                 <h3 className="text-xl font-bold mb-2">{photo.title}</h3>
                 <p className="text-sm text-center text-gray-200">
