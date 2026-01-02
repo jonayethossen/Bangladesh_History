@@ -1,22 +1,45 @@
 import React from "react";
+import { NavLink } from "react-router";
 
 const Navbar = () => {
   const links = (
     <>
       <li>
-        <a className="hover:text-[#00a86b] transition-colors">Home</a>
+        <NavLink to={"/"} className="hover:text-[#00a86b] transition-colors">
+          Home
+        </NavLink>
       </li>
       <li>
-        <a className="hover:text-[#00a86b] transition-colors">Documents</a>
+        <NavLink
+          to={"/document"}
+          className="hover:text-[#00a86b] transition-colors"
+        >
+          Documents
+        </NavLink>
       </li>
       <li>
-        <a className="hover:text-[#00a86b] transition-colors">Interview</a>
+        <NavLink
+          to={"/Interview"}
+          className="hover:text-[#00a86b] transition-colors"
+        >
+          Interview
+        </NavLink>
       </li>
       <li>
-        <a className="hover:text-[#00a86b] transition-colors">Photographs</a>
+        <NavLink
+          to={"/photogallary"}
+          className="hover:text-[#00a86b] transition-colors"
+        >
+          Photographs
+        </NavLink>
       </li>
       <li>
-        <a className="hover:text-[#00a86b] transition-colors">Contact</a>
+        <NavLink
+          to={"/contract"}
+          className="hover:text-[#00a86b] transition-colors"
+        >
+          Contact
+        </NavLink>
       </li>
     </>
   );
@@ -54,9 +77,12 @@ const Navbar = () => {
             </ul>
           </div>
           {/* Brand Logo/Title */}
-          <a className="btn btn-ghost text-xl font-extrabold tracking-tighter text-[#00a86b]">
+          <NavLink
+            to={"/"}
+            className="btn btn-ghost text-xl font-extrabold tracking-tighter text-[#00a86b]"
+          >
             LIBERATION <span className="text-white">WAR</span>
-          </a>
+          </NavLink>
         </div>
 
         <div className="navbar-center hidden lg:flex">

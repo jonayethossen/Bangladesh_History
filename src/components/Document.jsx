@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import DocImage from "../assets/War.jpg";
+import { NavLink } from "react-router";
 
 export default function DocumentSection() {
   // Sample data (Catalog)
