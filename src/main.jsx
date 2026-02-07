@@ -9,6 +9,8 @@ import DocumentSection from "./components/Document.jsx";
 import InterviewSection from "./components/Interview.jsx";
 import GallerySection from "./components/PhotoGallary.jsx";
 import ContactPage from "./components/Pages/Contract.jsx";
+import DocumentDetails from "./components/Pages/Detailspage.jsx";
+import LoginPage from "./components/Pages/Login.jsx";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +37,14 @@ const router = createBrowserRouter([
         path: "/contract",
         element: <ContactPage />,
       },
+      {
+        path: "/detailedView/:id",
+        Component: DocumentDetails,
+      },
+      {
+        path: "login",
+        Component: LoginPage,
+      },
     ],
   },
 ]);
@@ -42,5 +52,5 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <RouterProvider router={router} />
-  </StrictMode>
+  </StrictMode>,
 );

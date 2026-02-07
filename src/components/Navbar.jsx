@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 
 const Navbar = () => {
   const links = (
@@ -92,9 +92,12 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-end gap-2">
-          <a className="btn btn-ghost btn-sm hidden md:flex text-gray-400">
+          <Link
+            to="/login"
+            className="btn btn-ghost btn-sm hidden md:flex text-gray-400"
+          >
             Login
-          </a>
+          </Link>
           <a className="btn bg-[#00a86b] hover:bg-[#008f5a] border-none text-white btn-sm px-6">
             Contribute
           </a>

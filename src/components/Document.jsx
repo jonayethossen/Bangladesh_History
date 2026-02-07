@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import DocImage from "../assets/War.jpg";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 
 export default function DocumentSection() {
   // Sample data (Catalog)
@@ -125,9 +125,12 @@ export default function DocumentSection() {
                 <span className="italic">Source: {doc.source}</span>
               </div>
 
-              <button className="btn btn-xs btn-outline mt-5 w-full border-gray-700 text-gray-400 hover:bg-[#00a86b] hover:text-white">
+              <Link
+                to={`/detailedView/${doc.id}`}
+                className="btn btn-xs btn-outline mt-5 w-full border-gray-700 text-gray-400 hover:bg-[#00a86b] hover:text-white"
+              >
                 Detailed View
-              </button>
+              </Link>
             </div>
           ))}
         </div>

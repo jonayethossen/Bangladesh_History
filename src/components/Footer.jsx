@@ -1,4 +1,5 @@
 export default function FooterSection() {
+  const time = new Date();
   return (
     <footer className="footer sm:footer-horizontal bg-neutral text-neutral-content p-10">
       <aside>
@@ -18,6 +19,7 @@ export default function FooterSection() {
           <br />
           Providing reliable tech since 2020
         </p>
+        <h6>{time.toLocaleString()}</h6>
       </aside>
       <nav>
         <h6 className="footer-title">Social</h6>
