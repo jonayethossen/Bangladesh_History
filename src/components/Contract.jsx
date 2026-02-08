@@ -1,139 +1,142 @@
-import React from "react";
-import { FaLocationDot } from "react-icons/fa6";
-import { MdEmail } from "react-icons/md";
+import React, { useState } from "react";
 
-const ContactSection = () => {
+const Contact = () => {
+  const [messages, setMessages] = useState([
+    {
+      text: "Hi! I'm your Plant Specialist. How can I help you today?",
+      sender: "bot",
+    },
+  ]);
+  const [inputValue, setInputValue] = useState("");
+
+  const handleSendMessage = () => {
+    if (!inputValue.trim()) return;
+
+    const newMessages = [...messages, { text: inputValue, sender: "user" }];
+    setMessages(newMessages);
+    setInputValue("");
+
+    // Bot Auto-reply logic
+    setTimeout(() => {
+      setMessages((prev) => [
+        ...prev,
+        {
+          text: "Got it! Our specialist will respond shortly. 🌿",
+          sender: "bot",
+        },
+      ]);
+    }, 1000);
+  };
+
   return (
-    <section className="py-12 md:py-20 bg-[#121212] text-white overflow-hidden">
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
-          <div className="space-y-6">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-[#00a86b] tracking-tight">
-              Get in Touch
+    <div className="bg-[#121212] min-h-screen pb-12 text-white">
+      {/* Header Section */}
+      <div className="bg-[#1e1e1e] border-b border-gray-800 py-10 text-center mb-10">
+        <h1 className="text-4xl font-extrabold text-[#00a86b] tracking-tight">
+          CONTACT <span className="text-white">US</span>
+        </h1>
+        <p className="text-gray-400 mt-2">
+          We're here to help you and your plants grow.
+        </p>
+      </div>
+
+      <div className="max-w-4xl mx-auto px-4">
+        {/* --- Dark Chat Bot Section --- */}
+        <div className="bg-[#1e1e1e] rounded-xl shadow-2xl overflow-hidden mb-16 border border-gray-800">
+          <div className="bg-[#00a86b]/10 py-4 text-center border-b border-gray-800">
+            <h2 className="text-xl font-bold text-[#00a86b]">
+              Live Chat with Plant Specialist
             </h2>
-            <div className="h-1 w-16 bg-[#f42a41]"></div>
-            <p className="text-gray-400 text-base md:text-lg leading-relaxed text-justify">
-              Have questions or want to contribute to the archive? Feel free to
-              reach out. Your contributions help keep the history of the
-              Liberation War alive for future generations.
-            </p>
+          </div>
 
-            <div className="space-y-6 mt-8">
-              <div className="flex items-center gap-4 md:gap-5 group">
-                <div className="w-10 h-10 md:w-12 md:h-12 shrink-0 rounded-full bg-[#1e1e1e] flex items-center justify-center group-hover:bg-[#00a86b] transition-all">
-                  <span className="text-lg md:text-xl text-white">
-                    <FaLocationDot />
-                  </span>
+          <div className="p-6">
+            {/* Chat Window */}
+            <div className="h-56 overflow-y-auto mb-4 space-y-4 border-b border-gray-700 pb-4 custom-scrollbar">
+              {messages.map((msg, index) => (
+                <div
+                  key={index}
+                  className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}
+                >
+                  <div
+                    className={`max-w-[75%] p-3 rounded-2xl text-sm leading-relaxed ${
+                      msg.sender === "user"
+                        ? "bg-[#00a86b] text-white rounded-tr-none"
+                        : "bg-[#2a2a2a] text-gray-200 rounded-tl-none border border-gray-700"
+                    }`}
+                  >
+                    {msg.text}
+                  </div>
                 </div>
-                <div>
-                  <p className="text-[10px] md:text-xs text-gray-500 uppercase tracking-widest">
-                    Location
-                  </p>
-                  <p className="font-medium text-sm md:text-base">
-                    Dhaka, Bangladesh
-                  </p>
-                </div>
-              </div>
+              ))}
+            </div>
 
-              <div className="flex items-center gap-4 md:gap-5 group">
-                <div className="w-10 h-10 md:w-12 md:h-12 shrink-0 rounded-full bg-[#1e1e1e] flex items-center justify-center group-hover:bg-[#00a86b] transition-all">
-                  <span className="text-lg md:text-xl text-white">
-                    <MdEmail />
-                  </span>
-                </div>
-                <div className="break-all">
-                  <p className="text-[10px] md:text-xs text-gray-500 uppercase tracking-widest">
-                    Email
-                  </p>
-                  <p className="font-medium text-sm md:text-base">
-                    admin@liberationwararchive.bd
-                  </p>
-                </div>
-              </div>
+            {/* Chat Input */}
+            <div className="flex gap-3">
+              <input
+                type="text"
+                placeholder="Ask me about your plant..."
+                className="flex-1 bg-[#121212] border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#00a86b] transition-all"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
+              />
+              <button
+                onClick={handleSendMessage}
+                className="bg-[#00a86b] hover:bg-[#008f5a] text-white px-6 py-3 rounded-lg font-bold transition-all active:scale-95"
+              >
+                Send
+              </button>
             </div>
           </div>
+        </div>
 
-          <div className="bg-[#1e1e1e] p-6 md:p-8 rounded-2xl md:rounded-3xl border border-gray-800 shadow-2xl">
-            <form
-              className="space-y-4 md:space-y-5"
-              onSubmit={(e) => e.preventDefault()}
-            >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
-                <div className="flex flex-col gap-2">
-                  <label className="text-[10px] md:text-xs font-bold text-gray-400 uppercase">
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Full Name"
-                    className="w-full px-4 py-3 rounded-lg bg-[#2a2a2a] border border-gray-700 text-white focus:border-[#00a86b] focus:outline-none transition-colors text-sm"
-                    required
-                  />
-                </div>
-                <div className="flex flex-col gap-2">
-                  <label className="text-[10px] md:text-xs font-bold text-gray-400 uppercase">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    placeholder="Email Address"
-                    className="w-full px-4 py-3 rounded-lg bg-[#2a2a2a] border border-gray-700 text-white focus:border-[#00a86b] focus:outline-none transition-colors text-sm"
-                    required
-                  />
-                </div>
-              </div>
+        {/* --- Dark Contact Form --- */}
+        <div className="text-center">
+          <h2 className="text-3xl font-bold text-white mb-6">Contact Form</h2>
+          <div className="w-20 h-1 bg-[#00a86b] mx-auto mb-10"></div>
 
-              <div className="flex flex-col gap-2">
-                <label className="text-[10px] md:text-xs font-bold text-gray-400 uppercase">
-                  Subject
-                </label>
-                <input
-                  type="text"
-                  placeholder="e.g. Contribution of Documents"
-                  className="w-full px-4 py-3 rounded-lg bg-[#2a2a2a] border border-gray-700 text-white focus:border-[#00a86b] focus:outline-none transition-colors text-sm"
-                  required
-                />
-              </div>
+          <form className="space-y-6 text-left max-w-2xl mx-auto bg-[#1e1e1e] p-8 rounded-xl border border-gray-800 shadow-lg">
+            <div>
+              <label className="block text-gray-400 text-sm font-medium mb-2">
+                Full Name
+              </label>
+              <input
+                type="text"
+                placeholder="Enter your name"
+                className="w-full bg-[#121212] border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-1 focus:ring-[#00a86b] transition-all"
+              />
+            </div>
 
-              <div className="flex flex-col gap-2">
-                <label className="text-[10px] md:text-xs font-bold text-gray-400 uppercase">
-                  Message
-                </label>
-                <textarea
-                  rows="4"
-                  className="w-full px-4 py-3 rounded-lg bg-[#2a2a2a] border border-gray-700 text-white focus:border-[#00a86b] focus:outline-none transition-colors text-sm resize-none"
-                  placeholder="How can we help you?"
-                  required
-                ></textarea>
-              </div>
+            <div>
+              <label className="block text-gray-400 text-sm font-medium mb-2">
+                Email Address
+              </label>
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="w-full bg-[#121212] border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-1 focus:ring-[#00a86b] transition-all"
+              />
+            </div>
 
-              <div className="flex flex-col gap-2">
-                <label className="text-[10px] md:text-xs font-bold text-gray-400 uppercase italic">
-                  Attach Documents or Photos
-                </label>
-                <input
-                  type="file"
-                  className="block w-full text-sm text-gray-400
-                    file:mr-4 file:py-2 file:px-4
-                    file:rounded-full file:border-0
-                    file:text-xs file:font-semibold
-                    file:bg-[#2a2a2a] file:text-gray-300
-                    hover:file:bg-[#333333] cursor-pointer"
-                />
-              </div>
+            <div>
+              <label className="block text-gray-400 text-sm font-medium mb-2">
+                Message
+              </label>
+              <textarea
+                rows="4"
+                placeholder="How can we help?"
+                className="w-full bg-[#121212] border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-1 focus:ring-[#00a86b] transition-all"
+              ></textarea>
+            </div>
 
-              <button
-                type="submit"
-                className="w-full py-3 md:py-4 bg-[#00a86b] hover:bg-[#008f5a] text-white rounded-lg font-bold shadow-lg shadow-[#00a86b]/20 transition-all active:scale-[0.98] text-sm md:text-base mt-2"
-              >
-                Send Contribution / Inquiry
-              </button>
-            </form>
-          </div>
+            <button className="w-full bg-white hover:bg-gray-200 text-black font-bold py-4 rounded-lg transition-all uppercase tracking-widest text-sm">
+              Send Message
+            </button>
+          </form>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
-export default ContactSection;
+export default Contact;
