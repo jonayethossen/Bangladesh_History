@@ -1,140 +1,109 @@
 import React, { useState } from "react";
-import DocImage from "../assets/War.jpg";
-import { Link, NavLink } from "react-router";
 
-export default function DocumentSection() {
-  // Sample data (Catalog)
-  const [documents] = useState([
-    {
-      id: 1,
-      title: "Instrument of Surrender",
-      type: "Treaty",
-      date: "16 Dec 1971",
-      source: "National Museum",
-      desc: "Official surrender of Pakistan Army.",
-    },
-    {
-      id: 2,
-      title: "Independence Declaration",
-      type: "Declaration",
-      date: "26 Mar 1971",
-      source: "Govt Archive",
-      desc: "Radio broadcast by Bangabandhu.",
-    },
-    {
-      id: 3,
-      title: "Mujibnagar Govt Letter",
-      type: "Correspondence",
-      date: "April 1971",
-      source: "Official Records",
-      desc: "Formal government correspondence.",
-    },
-  ]);
+const PlantMatchmaker = () => {
+  const [formData, setFormData] = useState({
+    sunlight: "",
+    careLevel: "",
+    petFriendly: "",
+  });
 
-  const [filter, setFilter] = useState("All");
-
-  // Filtering (Categorization)
-  const filteredDocs =
-    filter === "All" ? documents : documents.filter((d) => d.type === filter);
+  const handleSearch = () => {
+    console.log("Searching for plants with:", formData);
+    // Logic to filter plants goes here
+  };
 
   return (
-    <div className="bg-[#121212] text-white min-h-screen pb-20">
-      {/* Introduction & Significance */}
-      <div className="hero bg-[#1a1a1a] py-16 px-6 border-b border-gray-800">
-        <div className="hero-content flex-col lg:flex-row-reverse max-w-7xl">
-          <img
-            src={DocImage}
-            className="max-w-sm rounded-2xl shadow-2xl border border-gray-700"
-            alt="1971 War"
-          />
-          <div className="lg:pr-10">
-            <h1 className="text-5xl font-extrabold text-[#00a86b] mb-6 tracking-tight">
-              BANGLADESH LIBERATION WAR, 1971
-            </h1>
-            <p className="py-2 text-gray-400 leading-relaxed text-justify">
-              Pakistan authorities’ reluctance to give legitimate power to
-              Sheikh Mujib, respecting the 1970 election mandate, resulted in a
-              constitutional crisis in Pakistan. The planned military
-              pacification, Operation Searchlight, created such terror and
-              genocide that ten million people fled to India. India gave shelter
-              to the East Pakistani refugees for nine months and trained Mukti
-              Bahini, consisting of military, paramilitary, and civilians, to
-              fight a civil war.[13] Pakistan launched the pre-emptive aerial
-              strike on eleven Indian Air Force stations on 03 December 1971,
-              setting off hostilities between the two neighbors. When the joint
-              command of Mukti Bahini and the Indian Army advanced inside East
-              Pakistan, the defeat and surrender of the Pakistan Army became a
-              matter of time. On 16 December 1971, about 93,000 surrendered
-              Pakistani troops were taken as POWs in the custody of the Indian
-              Army. In 2009, almost forty years after the events of 1971, under
-              the Bangladesh War Crimes Fact-Finding Committee report, 1,597
-              people were accused of war crimes, including rape.[14] Pakistan’s
-              attempt to enforce uniformity where diversity was desired had an
-              unfortunate consequence. In the final analysis, the emergence of
-              Bangladesh signifies the right to self-determination.
-            </p>
+    <div className="flex flex-col md:flex-row gap-6 p-8 bg-gray-50 min-h-[500px] px-40">
+      {/* Left Column: The Quiz Card */}
+      <div className="flex-1 bg-white rounded-lg shadow-lg overflow-hidden border border-gray-100">
+        <div className="bg-[#d9e8df] p-6 text-center">
+          <h2 className="text-2xl font-bold text-gray-800">
+            Find Your Perfect Plant!
+          </h2>
+        </div>
+
+        <div className="p-8 space-y-6">
+          <p className="text-sm text-gray-600 leading-relaxed">
+            Take our <span className="font-bold">Plant Matchmaker Quiz</span>{" "}
+            and discover plants recommended just for your space and lifestyle.
+          </p>
+
+          <div className="space-y-4">
+            {/* Sunlight Dropdown */}
+            <div>
+              <label className="block text-sm font-bold text-gray-800 mb-2">
+                How much sunlight does your space get?
+              </label>
+              <select
+                className="w-full p-2 border text-black border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-emerald-500 outline-none"
+                onChange={(e) =>
+                  setFormData({ ...formData, sunlight: e.target.value })
+                }
+              >
+                <option>Select One</option>
+                <option value="low">Low Light</option>
+                <option value="indirect">Bright Indirect</option>
+                <option value="direct">Direct Sunlight</option>
+              </select>
+            </div>
+
+            {/* Care Level Dropdown */}
+            <div>
+              <label className="block text-sm font-bold text-gray-800 mb-2">
+                Preferred Care Level
+              </label>
+              <select
+                className="w-full p-2 border text-black border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-emerald-500 outline-none"
+                onChange={(e) =>
+                  setFormData({ ...formData, careLevel: e.target.value })
+                }
+              >
+                <option>Select One</option>
+                <option value="easy">Beginner (Hard to kill)</option>
+                <option value="moderate">Intermediate</option>
+                <option value="high">Plant Parent Pro</option>
+              </select>
+            </div>
+
+            {/* Pet Friendly Dropdown */}
+            <div>
+              <label className="block text-sm font-bold text-gray-800 mb-2">
+                Need pet-friendly plants?
+              </label>
+              <select
+                className="w-full p-2 text-black border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-emerald-500 outline-none"
+                onChange={(e) =>
+                  setFormData({ ...formData, petFriendly: e.target.value })
+                }
+              >
+                <option>Select One</option>
+                <option value="yes">Yes, please!</option>
+                <option value="no">Doesn't matter</option>
+              </select>
+            </div>
           </div>
+
+          <button
+            onClick={handleSearch}
+            className="w-full bg-[#1e8449] hover:bg-[#196f3d] text-white font-semibold py-3 rounded-md transition duration-200"
+          >
+            Find My plants
+          </button>
         </div>
       </div>
 
-      {/* Documents Catalog */}
-      <div className="container mx-auto px-6 mt-16">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl font-bold text-[#00a86b]">
-            HISTORICAL DOCUMENTS CATALOG
-          </h2>
-          <div className="h-1 w-20 bg-[#f42a41] mx-auto mt-2"></div>
-        </div>
-
-        {/* Categorization Filters */}
-        <div className="flex flex-wrap justify-center gap-3 mb-10">
-          {["All", "Treaty", "Declaration", "Correspondence"].map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setFilter(cat)}
-              className={`btn btn-sm rounded-full px-6 ${
-                filter === cat
-                  ? "bg-[#00a86b] border-none text-white"
-                  : "btn-outline text-gray-400 border-gray-700 hover:bg-[#00a86b] hover:border-none"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-
-        {/* Detailed View Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredDocs.map((doc) => (
-            <div
-              key={doc.id}
-              className="bg-[#1e1e1e] p-6 rounded-2xl border border-gray-800 shadow-xl hover:border-[#00a86b] transition-all group"
-            >
-              <span className="text-[10px] font-bold text-[#f42a41] uppercase tracking-widest">
-                {doc.type}
-              </span>
-              <h3 className="text-xl font-bold mt-2 text-white group-hover:text-[#00a86b] transition-colors">
-                {doc.title}
-              </h3>
-              <p className="text-gray-500 text-sm mt-3 leading-relaxed">
-                {doc.desc}
-              </p>
-
-              <div className="mt-6 pt-4 border-t border-gray-800 flex justify-between items-center text-[11px] text-gray-400">
-                <span>{doc.date}</span>
-                <span className="italic">Source: {doc.source}</span>
-              </div>
-
-              <Link
-                to={`/detailedView/${doc.id}`}
-                className="btn btn-xs btn-outline mt-5 w-full border-gray-700 text-gray-400 hover:bg-[#00a86b] hover:text-white"
-              >
-                Detailed View
-              </Link>
-            </div>
-          ))}
+      {/* Right Column: Recommendations Placeholder */}
+      <div className="flex-1 bg-[#dcf5ff] rounded-lg flex flex-col items-center justify-center p-12 text-center min-h-[300px]">
+        <h2 className="text-2xl font-bold text-gray-800 mb-4">
+          Recommended Plants For You
+        </h2>
+        <div className="text-5xl text-emerald-700">
+          {/* Using a simple emoji/icon combo to mimic your image */}
+          ☀️🪴
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default PlantMatchmaker;

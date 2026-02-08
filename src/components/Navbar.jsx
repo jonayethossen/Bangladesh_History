@@ -2,47 +2,29 @@ import React from "react";
 import { Link, NavLink } from "react-router";
 
 const Navbar = () => {
-  const links = (
-    <>
-      <li>
-        <NavLink to={"/"} className="hover:text-[#00a86b] transition-colors">
-          Home
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to={"/document"}
-          className="hover:text-[#00a86b] transition-colors"
-        >
-          Documents
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to={"/Interview"}
-          className="hover:text-[#00a86b] transition-colors"
-        >
-          Interview
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to={"/photogallary"}
-          className="hover:text-[#00a86b] transition-colors"
-        >
-          Photographs
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to={"/contract"}
-          className="hover:text-[#00a86b] transition-colors"
-        >
-          Contact
-        </NavLink>
-      </li>
-    </>
-  );
+  const navItems = [
+    { name: "Home", path: "/" },
+    { name: "About", path: "/document" },
+    { name: "Product", path: "/Interview" },
+    { name: "Contact", path: "/contract" },
+  ];
+
+  const links = navItems.map((item) => (
+    <li key={item.path}>
+      <NavLink
+        to={item.path}
+        className={({ isActive }) =>
+          `transition-colors duration-200 ${
+            isActive
+              ? "text-[#00a86b] font-bold"
+              : "text-white hover:text-[#00a86b]"
+          }`
+        }
+      >
+        {item.name}
+      </NavLink>
+    </li>
+  ));
 
   return (
     <div className="sticky top-0 z-50 w-full">
@@ -76,13 +58,13 @@ const Navbar = () => {
               {links}
             </ul>
           </div>
-          {/* Brand Logo/Title */}
-          <NavLink
-            to={"/"}
+
+          <Link
+            to="/"
             className="btn btn-ghost text-xl font-extrabold tracking-tighter text-[#00a86b]"
           >
-            LIBERATION <span className="text-white">WAR</span>
-          </NavLink>
+            PLANT <span className="text-white">STORE</span>
+          </Link>
         </div>
 
         <div className="navbar-center hidden lg:flex">
@@ -91,16 +73,29 @@ const Navbar = () => {
           </ul>
         </div>
 
-        <div className="navbar-end gap-2">
-          <Link
-            to="/login"
-            className="btn btn-ghost btn-sm hidden md:flex text-gray-400"
-          >
-            Login
-          </Link>
-          <a className="btn bg-[#00a86b] hover:bg-[#008f5a] border-none text-white btn-sm px-6">
-            Contribute
-          </a>
+        {/* Added a Placeholder for Navbar-End (User profile or Cart) */}
+        <div className="navbar-end">
+          <button className="btn btn-ghost btn-circle">
+            <div className="indicator">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                />
+              </svg>
+              <span className="badge badge-sm indicator-item bg-[#00a86b] border-none text-white">
+                0
+              </span>
+            </div>
+          </button>
         </div>
       </div>
     </div>

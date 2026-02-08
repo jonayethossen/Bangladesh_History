@@ -1,82 +1,206 @@
-import React from "react";
-import InterviewImage from "../assets/fozlo.jpg";
+import React, { useState } from "react";
 
-export default function InterviewSection() {
+const ProductPage = () => {
+  const [selectedSize, setSelectedSize] = useState("");
+
   return (
-    <div className="bg-[#121212] min-h-screen py-16 px-6">
-      <div className="max-w-6xl mx-auto">
-        {/* Section Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-[#00a86b] uppercase tracking-widest">
-            Voices of Freedom
-          </h2>
-          <div className="h-1 w-20 bg-[#f42a41] mx-auto mt-2"></div>
+    <div className="bg-[#121212] text-white min-h-screen">
+      {/* 1. Header/Purchase Section */}
+      <section className="max-w-7xl mx-auto px-4 py-12 flex flex-col md:flex-row gap-10">
+        {/* Left: Video Player */}
+        <div className="flex-1">
+          <div className="relative aspect-[9/16] md:aspect-video bg-black rounded-xl overflow-hidden shadow-2xl border border-gray-800">
+            <iframe
+              className="absolute inset-0 w-full h-full"
+              src="https://www.youtube.com/embed/4mNOXrdimJA?autoplay=0&rel=0"
+              title="The AI plant pot"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
+          <p className="mt-4 text-sm text-gray-500 text-center italic">
+            Experience the future of plant care. ✨
+          </p>
         </div>
 
-        {/* Hero Content Area */}
-        <div className="hero bg-[#1a1a1a] rounded-3xl overflow-hidden shadow-2xl border border-gray-800">
-          <div className="hero-content flex-col lg:flex-row gap-10 p-8 lg:p-12">
-            {/* Person Image & Media Controls */}
-            <div className="flex flex-col items-center gap-6">
-              <img
-                src={InterviewImage}
-                className="max-w-xs rounded-2xl shadow-2xl border-2 border-[#00a86b] object-cover h-80"
-                alt="Adv. Fozlur Rahman Khan"
-              />
+        {/* Right: Product Details */}
+        <div className="flex-1 bg-[#1a1a1a] p-8 rounded-2xl border border-gray-800 shadow-xl">
+          <div className="mb-4">
+            <span className="text-[#00a86b] text-xs font-bold tracking-widest uppercase">
+              Premium Collection
+            </span>
+          </div>
+          <h1 className="text-4xl md:text-5xl font-black mb-2">
+            Monstera Deliciosa
+          </h1>
+          <p className="text-gray-400 italic mb-6">
+            Lush tropical plant with iconic split leaves
+          </p>
 
-              {/* Audio/Video Access */}
-              <div className="w-full space-y-3">
-                <button className="btn btn-block bg-[#00a86b] hover:bg-[#008f5a] text-white border-none">
-                  <span>▶</span> Play Interview Audio
-                </button>
-                <button className="btn btn-block btn-outline border-gray-600 text-gray-400 hover:bg-[#1a1a1a]">
-                  Watch Video Testimony
-                </button>
+          <div className="flex items-baseline gap-2 mb-8">
+            <span className="text-3xl font-bold text-[#00a86b]">Tk 150.00</span>
+            <span className="text-gray-600 line-through text-lg">
+              Tk 200.00
+            </span>
+          </div>
+
+          <div className="space-y-6">
+            {/* Size Selector */}
+            <div>
+              <label className="block text-xs font-bold text-gray-500 uppercase mb-2">
+                Select Plant Size
+              </label>
+              <select
+                className="w-full p-4 bg-[#121212] border border-gray-800 rounded-lg focus:border-[#00a86b] focus:ring-1 focus:ring-[#00a86b] outline-none transition-all text-white"
+                onChange={(e) => setSelectedSize(e.target.value)}
+              >
+                <option value="">Choose a size</option>
+                <option value="small">Small (6")</option>
+                <option value="medium">Medium (10")</option>
+                <option value="large">Large (14")</option>
+              </select>
+            </div>
+
+            {/* Add-ons */}
+            <div className="space-y-3">
+              <label className="block text-xs font-bold text-gray-500 uppercase mb-2">
+                Custom Upgrades
+              </label>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <label className="flex items-center gap-3 p-4 bg-[#121212] border border-gray-800 rounded-lg hover:border-[#00a86b] transition-all cursor-pointer group">
+                  <input type="checkbox" className="accent-[#00a86b] h-5 w-5" />
+                  <span className="text-sm text-gray-300 group-hover:text-white transition-colors">
+                    Ceramic Pot (+50)
+                  </span>
+                </label>
+                <label className="flex items-center gap-3 p-4 bg-[#121212] border border-gray-800 rounded-lg hover:border-[#00a86b] transition-all cursor-pointer group">
+                  <input type="checkbox" className="accent-[#00a86b] h-5 w-5" />
+                  <span className="text-sm text-gray-300 group-hover:text-white transition-colors">
+                    Wooden Stand (+80)
+                  </span>
+                </label>
               </div>
             </div>
 
-            {/* Biography & Summary */}
-            <div className="text-white">
-              <h1 className="text-4xl font-bold text-[#00a86b] mb-2">
-                বীর মুক্তিযোদ্ধা এড. মো. ফজলুর রহমান খান
-              </h1>
-              <p className="text-[#f42a41] font-semibold text-sm mb-6">
-                সাবেক এমপি | মহান মুক্তিযুদ্ধের অন্যতম সংগঠক | বাঘমারা ক্যাম্প
-                কমান্ডার (১৯৭১)
+            {/* CTA Button */}
+            <button className="w-full bg-[#00a86b] hover:bg-[#008f5a] text-white font-black py-5 rounded-xl shadow-lg shadow-[#00a86b]/20 uppercase tracking-[0.2em] transition-all active:scale-[0.98] mt-4">
+              Add To Cart
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* 2. Specification Table */}
+      <section className="bg-black py-20 border-y border-gray-800">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex items-center gap-6 mb-12">
+            <h2 className="text-3xl font-bold uppercase tracking-tighter">
+              Specifications
+            </h2>
+            <div className="h-px flex-1 bg-gray-800"></div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <div className="lg:col-span-2">
+              <table className="w-full text-left">
+                <tbody>
+                  {[
+                    ["Light", "Bright, indirect sunlight"],
+                    ["Watering", "Once a week (allow soil to dry)"],
+                    ["Toxicity", "Toxic to pets"],
+                    ["Repotting", "Every 18-24 months"],
+                  ].map(([label, value], i) => (
+                    <tr
+                      key={i}
+                      className="border-b border-gray-800 group hover:bg-[#1a1a1a] transition-colors"
+                    >
+                      <td className="py-6 px-4 font-bold text-[#00a86b] uppercase text-xs w-1/3">
+                        {label}
+                      </td>
+                      <td className="py-6 px-4 text-gray-400 group-hover:text-white transition-colors">
+                        {value}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <div className="bg-[#1a1a1a] p-10 rounded-2xl border border-gray-800 relative overflow-hidden">
+              <div className="absolute top-0 right-0 p-4 opacity-10 text-6xl">
+                🌿
+              </div>
+              <h3 className="text-[#00a86b] font-black mb-4 uppercase tracking-widest text-sm">
+                Pro Growth Tip
+              </h3>
+              <p className="text-gray-400 leading-relaxed italic relative z-10">
+                "Wipe the leaves with a damp cloth to keep them shiny and
+                maximize photosynthesis. Your Monstera will grow much faster!"
               </p>
-
-              <div className="space-y-4 text-gray-300 leading-relaxed text-justify">
-                <p>
-                  বীর মুক্তিযোদ্ধা এডভোকেট মো. ফজলুর রহমান খান (জ. ১৯৩৩ – মৃ.
-                  ২০০৮) ভাষা আন্দোলন ও মহান মুক্তিযুদ্ধের অন্যতম সংগঠক। তিনি
-                  নেত্রকোণা সদর আসনের তিনবারের সাবেক এমপি ও জেলা আওয়ামী লীগের
-                  দীর্ঘদিনের সভাপতি ছিলেন।
-                </p>
-                <p>
-                  <strong>মুক্তিযুদ্ধে ভূমিকা:</strong> ভাষা আন্দোলন, ছয় দফা ও
-                  মুক্তিযুদ্ধে সক্রিয় ভূমিকার জন্য একাধিকবার কারাবরণ করেন এবং
-                  ১৯৭১ সালে বাঘমারা ক্যাম্পের অধীনে নেতৃত্ব দেন।
-                </p>
-                <p className="bg-[#121212] p-4 rounded-lg border-l-4 border-[#00a86b] italic">
-                  "সাক্ষাৎকারের সারসংক্ষেপ: ১৯৭১ সালের যুদ্ধের কৌশল, বাঘমারা
-                  ক্যাম্পের প্রতিরোধ এবং মুক্তিযোদ্ধাদের প্রশিক্ষণের স্মৃতিচারণ
-                  করেছেন এই বীর যোদ্ধা।"
-                </p>
-              </div>
-
-              {/* Achievement Badges */}
-              <div className="mt-8 flex flex-wrap gap-2">
-                <div className="badge badge-outline border-gray-600 p-3 text-xs">
-                  বাংলাদেশ সংবিধানে স্বাক্ষরকারী
-                </div>
-                <div className="badge badge-outline border-[#00a86b] p-3 text-xs text-[#00a86b]">
-                  সিলভার অ্যাওয়ার্ড (২০২৩)
-                </div>
-              </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* 3. Community Feedback */}
+      <section className="max-w-7xl mx-auto px-4 py-24">
+        <h2 className="text-4xl font-black text-center mb-16 uppercase tracking-tighter">
+          Parent <span className="text-[#00a86b]">Insights</span>
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {[1, 2, 3].map((item) => (
+            <div
+              key={item}
+              className="bg-[#1a1a1a] border border-gray-800 p-10 rounded-2xl hover:border-[#00a86b] transition-all duration-500 group"
+            >
+              <div className="w-14 h-14 bg-[#121212] rounded-full mb-6 flex items-center justify-center border border-gray-800 group-hover:border-[#00a86b] transition-colors">
+                <span className="text-xl">👤</span>
+              </div>
+              <h4 className="font-bold text-white mb-1">Rafiul</h4>
+              <p className="text-[10px] text-[#00a86b] mb-6 font-bold uppercase tracking-[0.2em]">
+                Indoor Specialist
+              </p>
+              <p className="text-gray-500 text-sm leading-relaxed border-t border-gray-800 pt-6 group-hover:text-gray-300 transition-colors">
+                "The Ivy AI pot integrated perfectly. Best decision for my home
+                office setup."
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 4. Contact/Tip Form */}
+      <section className="max-w-3xl mx-auto px-4 py-20 mb-24 bg-[#1a1a1a] rounded-3xl border border-gray-800">
+        <h2 className="text-2xl font-bold text-center mb-8 uppercase tracking-widest">
+          Share Your Experience
+        </h2>
+        <form className="space-y-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <input
+              type="text"
+              placeholder="Name"
+              className="w-full p-4 bg-[#121212] border border-gray-800 rounded-lg focus:border-[#00a86b] outline-none text-white"
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              className="w-full p-4 bg-[#121212] border border-gray-800 rounded-lg focus:border-[#00a86b] outline-none text-white"
+            />
+          </div>
+          <textarea
+            placeholder="Your plant tip..."
+            rows="4"
+            className="w-full p-4 bg-[#121212] border border-gray-800 rounded-lg focus:border-[#00a86b] outline-none text-white"
+          ></textarea>
+          <div className="text-center">
+            <button className="bg-white text-black px-12 py-4 font-black uppercase tracking-widest hover:bg-[#00a86b] hover:text-white transition-all rounded-full">
+              Submit Tip
+            </button>
+          </div>
+        </form>
+      </section>
     </div>
   );
-}
+};
+
+export default ProductPage;
