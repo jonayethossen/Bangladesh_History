@@ -9,6 +9,7 @@ const PlantMatchmaker = () => {
 
   const handleSearch = () => {
     console.log("Searching for plants with:", formData);
+
     // Logic to filter plants goes here
   };
 
