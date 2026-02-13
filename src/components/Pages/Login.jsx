@@ -23,8 +23,7 @@ const LoginPage = () => {
               </h2>
               <div className="h-1 w-12 bg-[#f42a41] mx-auto mt-2"></div>
               <p className="text-gray-400 mt-4 text-sm font-medium">
-                Log in to access the Liberation War Archive Log in to access the
-                Liberation War Archive
+                Log in to access the Liberation War Archive
               </p>
             </div>
 
