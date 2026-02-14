@@ -30,7 +30,7 @@ const LoginPage = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-2">
                 <label className="text-[10px] font-bold text-gray-500 uppercase tracking-[0.2em] ml-1">
-                  Email Address Email Address
+                  Email Address
                 </label>
                 <div className="relative group">
                   <span className="absolute inset-y-0 left-0 pl-4 flex items-center text-gray-500 group-focus-within:text-[#00a86b] transition-colors">
